@@ -1,0 +1,41 @@
+skill_id: rh-html-tech-tile
+type: html-element
+name: Tech Tile Grid
+css_class: tech-grid > tech-tile
+description: >-
+  A 3-column grid of product or technology tiles. Each tile has a small uppercase
+  layer label, a bold red product name, and a short description. Used for product
+  portfolio, solution overview, and technology stack slides.
+
+when_to_use:
+  - Product or solution portfolio overview slides.
+  - Technology stack or component architecture overview.
+  - Service offerings grid.
+  - Works best with 3–6 tiles (1–2 rows of 3).
+
+constraints:
+  - .tech-layer: 0.7em, uppercase, letter-spacing 0.08em, var(--rh-gray-dark), bold.
+  - .tech-name: 1.05em, bold, var(--rh-red), line-height 1.2.
+  - .tech-detail: 0.8em, #4d4d4d, line-height 1.35.
+  - Red 4px top border on each tile (same pattern as stop-card).
+  - Grid is 3-column. For 4 tiles use repeat(2, 1fr); for 6 tiles use repeat(3, 1fr).
+  - .tech-layer is optional — omit if the layer/category distinction is not needed.
+
+html_pattern: |
+  <div class="tech-grid">
+    <div class="tech-tile">
+      <div class="tech-layer">Layer / Category</div>
+      <div class="tech-name">Product Name</div>
+      <div class="tech-detail">One to two sentence description of what this product does and its value.</div>
+    </div>
+    <div class="tech-tile">
+      <div class="tech-layer">Layer / Category</div>
+      <div class="tech-name">Second Product</div>
+      <div class="tech-detail">Description.</div>
+    </div>
+    <div class="tech-tile">
+      <div class="tech-layer">Layer / Category</div>
+      <div class="tech-name">Third Product</div>
+      <div class="tech-detail">Description.</div>
+    </div>
+  </div>

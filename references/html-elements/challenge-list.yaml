@@ -1,0 +1,46 @@
+skill_id: rh-html-challenge-list
+type: html-element
+name: Challenge List
+css_class: challenge-list > li
+description: >-
+  Unordered list where each item is presented as a card with a red 4px left
+  border and light grey background. Used for pain points, blockers, requirements,
+  or prioritised action items.
+
+when_to_use:
+  - Pain point or blocker framing slides ("Key Challenges", "What we heard").
+  - Prioritised list of requirements or criteria.
+  - Follow-up items or action items when detail per item is needed.
+  - Works best with 3–6 items. More than 6 becomes hard to scan.
+
+constraints:
+  - Each <li> has a 4px solid red left border and 0 6px 6px 0 border-radius.
+  - Item text: 0.95em, line-height 1.5.
+  - Use <strong> for the item label/category (renders in var(--rh-red)).
+  - Do not use regular bullet-point <ul> for this pattern — use .challenge-list.
+  - Avoid nesting lists inside .challenge-list items.
+
+html_pattern: |
+  <ul class="challenge-list" style="margin-top: 14px;">
+    <li>
+      <strong>Challenge Label:</strong> Description of the challenge, what it means
+      in practice, and its impact on the team or project.
+    </li>
+    <li>
+      <strong>Second Challenge:</strong> Keep descriptions concise —
+      two to three sentences maximum per item.
+    </li>
+    <li>
+      <strong>Third Challenge:</strong> Use this pattern for up to six items.
+    </li>
+  </ul>
+
+account_variant: |
+  <!-- Used in priority accounts / follow-up lists -->
+  <ul class="challenge-list" style="margin-top: 14px;">
+    <li>
+      <strong>Account Name (N players):</strong> Needs: use case one, use case two.
+      Challenges: challenge description.
+      <br/><em>Pitch: proposed action &rarr; expected outcome.</em>
+    </li>
+  </ul>

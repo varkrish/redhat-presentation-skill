@@ -1,0 +1,30 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-recommendation-card
+template_id: red-hat-standard
+type: element
+name: Recommendation / Next Step Card
+description: Actionable recommendation boxes — numbered or icon-anchored — for the closing section.
+section: Overview, agenda, content, and quotes
+when_to_use:
+- Final content slide before the closing/thank-you slide.
+- Executive briefing takeaways.
+- Post-workshop action items.
+constraints:
+- 2–4 recommendation cards maximum.
+- 'Each card: number or icon, bold headline (≤ 5 words), 1–2 sentence body.'
+- Cards must be visually equal — same width, same height.
+- Use Red Hat red for the card number or icon accent.
+- Do not mix recommendation cards with other element types on the same slide.
+visual:
+  card_background: White with red number badge or icon top-left
+  number_badge: Circle, Red Hat red fill, white number, 28–32px
+  headline_font: Red Hat Display, 15–17pt, bold
+  body_font: Red Hat Text, 12–13pt
+  card_border: 1pt light grey or none
+rh_examples:
+- slide_hint: 3 numbered white cards, horizontal row
+- slide_hint: 4 cards, 2×2 grid, red icon top-left each

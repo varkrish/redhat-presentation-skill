@@ -1,0 +1,27 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- narrative_pattern
+- constraints
+skill_id: red-hat-standard-dividers
+template_id: red-hat-standard
+type: section
+name: Section Dividers
+description: Red background transition slides between major deck sections.
+position: between sections
+purpose: Signals a topic change, gives the audience a visual pause, and optionally previews the next section topic.
+deck_types:
+- sales-pitch
+- exec-briefing
+- technical-deep-dive
+- field-event-summary
+required_elements:
+- divider
+optional_elements: []
+constraints:
+- Use one divider per major section — not between every slide.
+- Limit to 3–4 dividers in a standard 15-slide deck.
+- Divider headline ≤ 3 lines.
+- No data, charts, or body copy on divider slides.
+- Section marker text (small caps, above headline) is optional.
+narrative_pattern: The divider headline should anticipate the section question or theme ('The Challenge', 'Our Approach',
+  'Outcomes'). Use as a cognitive signal, not a filler. In short decks (< 8 slides), omit dividers entirely.

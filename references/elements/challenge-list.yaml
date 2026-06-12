@@ -1,0 +1,30 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-challenge-list
+template_id: red-hat-standard
+type: element
+name: Customer Challenge List
+description: Enumerates 3–5 pain points the customer faces, setting up the solution narrative.
+section: Overview, agenda, content, and quotes
+when_to_use:
+- Early in a sales deck after the title and before the solution.
+- As the 'problem framing' slide in an executive briefing.
+- Paired with a 'How Red Hat solves this' follow-up slide.
+constraints:
+- Maximum 5 challenges per slide; 3 is ideal.
+- 'Each item: bold challenge headline (≤ 6 words) + 1–2 sentence explanation.'
+- Use icons from the Red Hat icon library — one per challenge.
+- Do NOT use generic bullet points — use icon rows or numbered cards.
+- Challenge copy must be customer-centric ('You struggle with…'), not product-led.
+visual:
+  icon_size: 32–40px, Red Hat red or dark grey
+  headline_font: Red Hat Display, 16–18pt, bold
+  body_font: Red Hat Text, 13–14pt
+  layout: vertical list with icon left, text right; or 2-column card grid
+  accent: Thin red horizontal rule between items optional
+rh_examples:
+- slide_hint: 3 challenges with icon rows, white background
+- slide_hint: 4 challenge cards, 2×2 grid with red icon accents

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<!-- =========================================================
+  RED HAT COMPONENT LIBRARY
+  =========================================================
+  This file demonstrates every reusable component available
+  in the Red Hat HTML presentation template.
+
+  Each slide = one component type.
+  Use this as a living style guide and copy-paste reference.
+
+  Slides:
+    1  Title Slide
+    2  Content Slide Anatomy
+    3  Metric Grid
+    4  Bar Chart
+    5  Quote Grid
+    6  Challenge List
+    7  Recommendation Cards
+    8  Stop / Step Cards
+    9  Tech Tile Grid
+   10  Data Table
+   11  Two-Column Layout
+   12  Dark Contrast Panel
+   13  Closing / Thank You Slide
+  ========================================================= -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RH Presentation Component Library</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --rh-red:        #EE0000;
+            --rh-red-dark:   #CC0000;
+            --rh-black:      #000000;
+            --rh-white:      #FFFFFF;
+            --rh-gray-light: #f5f5f5;
+            --rh-gray-dark:  #595959;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Red Hat Display', 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a1a;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4 { text-transform: none; font-weight: 700; color: var(--rh-black); }
+        h2 { font-size: 1.1em; margin-bottom: 5px; margin-top: 15px; }
+        h3 { font-size: 1.05em; margin-bottom: 5px; margin-top: 10px; }
+        p, li { font-size: 1em; line-height: 1.4; margin-bottom: 8px; }
+
+        .presentation-container { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .deck-container { position: relative; height: 100vh; width: 100%; max-width: 1400px; max-height: 900px; margin: 0 auto; }
+
+        .slide {
+            width: 95vw; height: 95vh;
+            max-width: 1400px; max-height: 900px;
+            margin: 0 auto;
+            padding: 50px 80px 40px 80px;
+            box-sizing: border-box;
+            display: none !important;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.3);
+        }
+
+        .slide.active { display: flex !important; animation: slideIn 0.4s ease-out; }
+
+        .slide:not(.title-slide) { padding-bottom: 100px; }
+
+        .slide:not(.title-slide)::after {
+            content: '';
+            position: absolute;
+            bottom: 20px; right: 28px;
+            width: min(300px, 42vw); height: 58px;
+            background-image: url('../assets/logos/Logo-Red_Hat-Open_Innovation_Labs-A-Standard-RGB.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right center;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Component label badge */
+        .component-label {
+            position: absolute;
+            top: 12px; left: 80px;
+            font-size: 0.65em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--rh-gray-dark);
+            background: var(--rh-gray-light);
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        .slide-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--rh-red);
+            padding-bottom: 8px;
+            margin-bottom: 1px;
+            width: 100%;
+        }
+
+        .slide-header .rh-logo { height: 45px; width: auto; flex-shrink: 0; }
+        .slide-header h1 { font-size: 1.6em; color: var(--rh-red); margin: 0; text-align: right; flex-grow: 1; }
+
+        /* ── TITLE SLIDE ─── */
+        .title-slide {
+            background: linear-gradient(135deg, #EE0000 0%, #CC0000 100%) !important;
+            color: white !important;
+            padding: 60px !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+        }
+        .title-slide.active { display: flex !important; }
+        .title-slide::after { display: none !important; }
+        .title-slide .title-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .title-slide .main-title { font-size: 3.5em !important; font-weight: 300 !important; color: white !important; text-align: center; margin: 0 !important; line-height: 1.1 !important; }
+        .title-slide .subtitle { font-size: 1.8em !important; font-weight: 300 !important; color: rgba(255,255,255,0.9) !important; text-align: center; margin: 1rem 0 !important; }
+        .title-slide .event-info { font-size: 1.1em; color: rgba(255,255,255,0.8); text-align: center; margin-top: 0.5rem; }
+        .title-slide .presenters { display: flex; justify-content: space-between; margin-top: auto; padding-top: 2rem; }
+        .title-slide .presenter { color: white; }
+        .title-slide .presenter-name { font-size: 1.2em; font-weight: 500; margin-bottom: 5px; }
+        .title-slide .presenter-title { font-size: 1em; color: rgba(255,255,255,0.85); }
+
+        /* ── METRIC GRID ─── */
+        .metric-grid { display: flex; gap: 15px; margin: 10px 0; justify-content: center; width: 100%; }
+        .metric-card { background-color: var(--rh-gray-light); padding: 15px; border-left: 5px solid var(--rh-red); border-radius: 4px; flex: 1; text-align: center; min-height: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .metric-card .value { font-size: 2.2em; font-weight: 700; color: var(--rh-red); line-height: 1; margin-bottom: 5px; }
+        .metric-card .label { font-size: 0.75em; font-weight: 700; line-height: 1.2; }
+
+        /* ── BAR CHART ─── */
+        .bar-chart { list-style: none; padding: 0; margin: 10px 0; width: 100%; }
+        .bar-chart .bar-item { display: flex; align-items: center; margin-bottom: 8px; }
+        .bar-chart .bar-label { width: 30%; font-weight: 700; padding-right: 20px; flex-shrink: 0; text-align: right; font-size: 0.95em; }
+        .bar-chart .bar-wrapper { width: 70%; background-color: #e0e0e0; border-radius: 4px; height: 30px; }
+        .bar-chart .bar { background-color: var(--rh-red); height: 100%; line-height: 30px; color: white; text-align: right; font-weight: 700; font-size: 0.9em; padding-right: 12px; border-radius: 4px; white-space: nowrap; box-sizing: border-box; }
+        .bar-chart .bar.secondary { background-color: var(--rh-gray-dark); }
+        .bar-chart .bar.tertiary  { background-color: #8a8a8a; }
+        .bar-chart .bar.green     { background-color: #3B6D11; }
+
+        /* ── QUOTE GRID ─── */
+        .quote-grid { columns: 2 250px; column-gap: 30px; margin-top: 10px; text-align: left; }
+        .quote { background-color: var(--rh-gray-light); border-left: 3px solid var(--rh-red); padding: 12px 15px; margin-bottom: 12px; font-style: italic; font-size: 0.95em; break-inside: avoid-column; line-height: 1.3; border-radius: 0 6px 6px 0; }
+
+        /* ── CHALLENGE LIST ─── */
+        .challenge-list { list-style: none; padding: 0; margin: 15px 0; }
+        .challenge-list li { background: var(--rh-gray-light); border-left: 4px solid var(--rh-red); padding: 12px 18px; margin-bottom: 10px; border-radius: 0 6px 6px 0; font-size: 0.95em; line-height: 1.5; }
+        .challenge-list li strong { color: var(--rh-red); }
+
+        /* ── REC CARDS ─── */
+        .rec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 10px; }
+        .rec-card { background: var(--rh-gray-light); border-left: 5px solid var(--rh-red); border-radius: 0 6px 6px 0; padding: 14px 18px; }
+        .rec-card .rec-title  { font-weight: 700; font-size: 0.95em; color: var(--rh-red); margin-bottom: 4px; }
+        .rec-card .rec-detail { font-size: 0.85em; color: #4d4d4d; line-height: 1.4; }
+        .rec-card .rec-action { font-size: 0.8em; font-weight: 700; color: var(--rh-black); margin-top: 6px; }
+
+        /* ── STOP CARDS ─── */
+        .stops-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 15px 0; width: 100%; }
+        .stop-card { background: var(--rh-gray-light); border-top: 4px solid var(--rh-red); border-radius: 0 0 6px 6px; padding: 15px; text-align: center; }
+        .stop-card .stop-number { font-size: 1.8em; font-weight: 700; color: var(--rh-red); margin-bottom: 4px; }
+        .stop-card .stop-title  { font-size: 0.85em; font-weight: 700; margin-bottom: 6px; }
+        .stop-card .stop-desc   { font-size: 0.75em; color: var(--rh-gray-dark); line-height: 1.3; }
+
+        /* ── TECH TILE ─── */
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+        .tech-tile { background: var(--rh-gray-light); border-radius: 6px; padding: 14px 16px; border-top: 4px solid var(--rh-red); display: flex; flex-direction: column; gap: 4px; }
+        .tech-tile .tech-layer  { font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.08em; color: var(--rh-gray-dark); font-weight: 600; }
+        .tech-tile .tech-name   { font-size: 1.05em; font-weight: 700; color: var(--rh-red); line-height: 1.2; }
+        .tech-tile .tech-detail { font-size: 0.8em; color: #4d4d4d; line-height: 1.35; }
+
+        /* ── DATA TABLE ─── */
+        .table-container { margin-top: 10px; width: 100%; overflow: visible; }
+        .leads-table { width: 100%; border-collapse: collapse; font-size: 0.85em; table-layout: fixed; }
+        .leads-table th, .leads-table td { padding: 6px 8px; text-align: left; border: 1px solid #ddd; word-wrap: break-word; vertical-align: top; }
+        .leads-table th { background-color: var(--rh-gray-light); font-weight: 700; }
+        .leads-table tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* ── TWO COL ─── */
+        .two-col      { display: flex; gap: 30px; margin-top: 10px; width: 100%; }
+        .two-col .col { flex: 1; }
+
+        /* ── DARK CONTRAST CARD ─── */
+        .dark-panel {
+            background: #1a1a1a;
+            border-radius: 6px;
+            border-top: 4px solid var(--rh-red);
+            color: white;
+        }
+
+        /* ── NAVIGATION ─── */
+        .navigation { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 1rem; align-items: center; background: #141917; padding: 12px 25px; border-radius: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); z-index: 1000; }
+        .nav-btn { background: var(--rh-red); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .nav-btn:hover:not(:disabled) { background: var(--rh-red-dark); transform: scale(1.1); }
+        .nav-btn:disabled { background: #6a6e73; cursor: not-allowed; opacity: 0.5; }
+        .slide-counter { color: white; font-weight: 500; font-size: 0.95rem; padding: 0 10px; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--rh-red); transition: width 0.3s ease; z-index: 1001; }
+
+        @media (max-width: 768px) {
+            .slide { padding: 20px; font-size: 14px; }
+            .stops-grid { grid-template-columns: 1fr 1fr; }
+            .tech-grid { grid-template-columns: 1fr 1fr; }
+            .rec-grid { grid-template-columns: 1fr; }
+            .two-col { flex-direction: column; gap: 15px; }
+        }
+
+        @media print {
+            @page { margin: 0; size: A4 landscape; }
+            body { margin: 0; padding: 0; background: white; overflow: visible !important; }
+            .navigation, .progress-bar { display: none !important; }
+            .slide { display: flex !important; page-break-after: always; break-after: page; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; margin: 0; padding: 40px 60px !important; box-shadow: none; background: white; }
+            .slide:last-child { page-break-after: avoid; break-after: avoid; }
+            .title-slide { background: #EE0000 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; display: flex !important; flex-direction: column !important; justify-content: space-between !important; padding: 60px !important; }
+            .metric-card { border-left: 5px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .metric-card .value { color: #EE0000 !important; }
+            .bar-chart .bar { background-color: #EE0000 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; color: white !important; }
+            .bar-chart .bar.secondary { background-color: #595959 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .bar-chart .bar-wrapper { background-color: #e0e0e0 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .quote { border-left: 3px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .stop-card { border-top: 4px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .challenge-list li { border-left: 4px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .rec-card { border-left: 5px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .rec-card .rec-title { color: #EE0000 !important; }
+            .tech-tile { border-top: 4px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .tech-tile .tech-name { color: #EE0000 !important; }
+            /* Dark contrast panels → light card for print */
+            .dark-panel {
+                background: #f5f5f5 !important;
+                color: #333333 !important;
+                border-top: none !important;
+                border-left: 4px solid #EE0000 !important;
+                border-radius: 0 6px 6px 0 !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .dark-panel * { color: #333333 !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="presentation-container">
+        <div class="deck-container">
+
+            <!-- ═══ SLIDE 1 — TITLE SLIDE ═══ -->
+            <div class="slide active title-slide">
+                <div class="title-content">
+                    <h1 class="main-title">Red Hat Presentation<br>Component Library</h1>
+                    <p class="subtitle">HTML Template — Living Style Guide</p>
+                    <p class="event-info">Navigate with arrow keys or buttons below &bull; 13 slides</p>
+                </div>
+                <div class="presenters">
+                    <div class="presenter">
+                        <div class="presenter-name">Red Hat Open Innovation Labs</div>
+                        <div class="presenter-title">APAC &amp; Global</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 2 — CONTENT SLIDE ANATOMY ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Content Slide Anatomy</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Slide Title — Always in Red</h1>
+                </div>
+                <h2>Optional subheading — one line, describes the content below</h2>
+                <div style="margin-top: 20px; padding: 20px; border: 2px dashed #ccc; border-radius: 6px; color: var(--rh-gray-dark); font-size: 0.9em; line-height: 1.6;">
+                    <p><strong>Anatomy of a content slide:</strong></p>
+                    <ul style="margin: 0; padding-left: 1.2em;">
+                        <li><code>.slide-header</code> — inline SVG Red Hat logo (left) + <code>&lt;h1&gt;</code> title in red (right), separated by a red 2px bottom border</li>
+                        <li><code>&lt;h2&gt;</code> immediately after the header — optional subheading, describes the content type</li>
+                        <li>Component content fills the remaining space</li>
+                        <li>Footer OIL logo appears automatically via CSS <code>::after</code> on <code>.slide:not(.title-slide)</code></li>
+                        <li>Slide max-size: 1400&times;900px (16:9). Padding: 50px top/bottom, 80px sides.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 3 — METRIC GRID ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Metric Grid</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Event at a Glance</h1>
+                </div>
+                <h2>Key numbers — use 2 to 4 metric cards maximum per slide</h2>
+                <div class="metric-grid" style="margin-top: 24px; align-items: stretch;">
+                    <div class="metric-card">
+                        <div class="value">125</div>
+                        <div class="label">Total Players</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="value">92</div>
+                        <div class="label">Completions</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="value">74%</div>
+                        <div class="label">Completion Rate</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="value">51</div>
+                        <div class="label">Feedback Submissions</div>
+                    </div>
+                </div>
+                <p style="margin-top: 16px; font-size: 0.9em; color: var(--rh-gray-dark);">
+                    Classes: <code>.metric-grid</code> &rarr; <code>.metric-card</code> &rarr; <code>.value</code> + <code>.label</code>
+                </p>
+            </div>
+
+            <!-- ═══ SLIDE 4 — BAR CHART ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Bar Chart</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Automation Use Cases</h1>
+                </div>
+                <h2>Top use cases requested by participants — percentage mentioning</h2>
+                <ul class="bar-chart" style="margin-top: 14px;">
+                    <li class="bar-item"><span class="bar-label">Patch Management</span><div class="bar-wrapper"><div class="bar" style="width:78%">78%</div></div></li>
+                    <li class="bar-item"><span class="bar-label">App Deployment</span><div class="bar-wrapper"><div class="bar" style="width:64%">64%</div></div></li>
+                    <li class="bar-item"><span class="bar-label">Provisioning</span><div class="bar-wrapper"><div class="bar" style="width:55%">55%</div></div></li>
+                    <li class="bar-item"><span class="bar-label">Compliance</span><div class="bar-wrapper"><div class="bar secondary" style="width:42%">42%</div></div></li>
+                    <li class="bar-item"><span class="bar-label">DR / Backup</span><div class="bar-wrapper"><div class="bar secondary" style="width:33%">33%</div></div></li>
+                    <li class="bar-item"><span class="bar-label">Monitoring</span><div class="bar-wrapper"><div class="bar tertiary" style="width:21%">21%</div></div></li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 0.85em; color: var(--rh-gray-dark);">
+                    Bar modifiers: default (red) &bull; <code>.secondary</code> (dark grey) &bull; <code>.tertiary</code> (light grey) &bull; <code>.green</code> (#3B6D11)
+                </p>
+            </div>
+
+            <!-- ═══ SLIDE 5 — QUOTE GRID ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Quote Grid</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Participant Feedback</h1>
+                </div>
+                <h2>Selected verbatim responses — what participants said</h2>
+                <div class="quote-grid" style="margin-top: 12px;">
+                    <div class="quote">&ldquo;The hands-on lab format was excellent. I could immediately see how to apply these techniques to our production environment.&rdquo;</div>
+                    <div class="quote">&ldquo;Patching automation alone would save my team 20 hours per month. This is exactly what we needed.&rdquo;</div>
+                    <div class="quote">&ldquo;The instructors were very knowledgeable. I appreciated the real-world examples throughout.&rdquo;</div>
+                    <div class="quote">&ldquo;We struggle with skills gaps. Having engineers embed with us to build playbooks together would be transformative.&rdquo;</div>
+                    <div class="quote">&ldquo;Ansible Lightspeed was impressive. AI-assisted playbook generation addresses our biggest bottleneck.&rdquo;</div>
+                    <div class="quote">&ldquo;I&rsquo;d like more time on the advanced topics, but overall the event was well structured.&rdquo;</div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 6 — CHALLENGE LIST ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Challenge List</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Key Challenges &amp; Blockers</h1>
+                </div>
+                <h2>Pain points identified across participants — each item is distinct and actionable</h2>
+                <ul class="challenge-list" style="margin-top: 14px;">
+                    <li><strong>Skills Gap (60%):</strong> Teams lack playbook authoring skills. Classroom training alone is insufficient — they need embedded, hands-on co-creation.</li>
+                    <li><strong>Cultural Resistance:</strong> Siloed teams and approval-heavy processes block adoption even when leadership and budget are aligned.</li>
+                    <li><strong>Pilot-to-Production Gap:</strong> Subscriptions purchased but stuck between PoC and production — no roadmap, no champion, no governance to scale.</li>
+                    <li><strong>Integration Complexity:</strong> Existing ITSM tools and change management processes create friction when automating across teams.</li>
+                </ul>
+            </div>
+
+            <!-- ═══ SLIDE 7 — RECOMMENDATION CARDS ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Recommendation Cards</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Recommendations &amp; Next Steps</h1>
+                </div>
+                <h2>2&times;2 grid — each card has title, detail, and action line</h2>
+                <div class="rec-grid">
+                    <div class="rec-card">
+                        <div class="rec-title">Labs Residency: Fast-Track Adoption</div>
+                        <div class="rec-detail">Propose adoption residencies (4&ndash;8 weeks) to co-build production workflows alongside customer teams. Closes skills gap while delivering real automation.</div>
+                        <div class="rec-action">Action: Labs team to propose scoping calls within 2 weeks</div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-title">Patch Management PoC</div>
+                        <div class="rec-detail">Offer a focused 2-week PoC with AAP + Insights for automated patch compliance to top accounts. Patching was the #1 automation ask.</div>
+                        <div class="rec-action">Action: SA to scope PoC for 3 accounts</div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-title">Training &amp; Certification</div>
+                        <div class="rec-detail">Propose DO007 and DO374 cohorts for target accounts. Bundle with exam vouchers for EX374 to create a clear skills progression path.</div>
+                        <div class="rec-action">Action: Training team to send proposals this month</div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-title">Ansible Lightspeed Demos</div>
+                        <div class="rec-detail">Multiple participants cited AI-driven automation as a priority. Position Lightspeed demos to show AI-assisted playbook generation.</div>
+                        <div class="rec-action">Action: Demo series targeting AI-curious accounts</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 8 — STOP / STEP CARDS ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Stop / Step Cards</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Journey Stops</h1>
+                </div>
+                <h2>Four-stage journey — numbered steps in a horizontal grid</h2>
+                <div class="stops-grid">
+                    <div class="stop-card">
+                        <div class="stop-number">01</div>
+                        <div class="stop-title">Discovery</div>
+                        <div class="stop-desc">Teams register and receive their player kit. Introduction to the Ansible Quest world and objectives.</div>
+                    </div>
+                    <div class="stop-card">
+                        <div class="stop-number">02</div>
+                        <div class="stop-title">Foundations</div>
+                        <div class="stop-desc">Core Ansible concepts — inventory, playbooks, modules. Teams complete foundational challenges to unlock advanced stops.</div>
+                    </div>
+                    <div class="stop-card">
+                        <div class="stop-number">03</div>
+                        <div class="stop-title">Advanced Lab</div>
+                        <div class="stop-desc">Roles, collections, and AAP integration. Teams tackle real-world automation scenarios against live infrastructure.</div>
+                    </div>
+                    <div class="stop-card">
+                        <div class="stop-number">04</div>
+                        <div class="stop-title">Championship</div>
+                        <div class="stop-desc">Final challenge: deploy a complete automation workflow from scratch. Top teams win prizes and Red Hat certification vouchers.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 9 — TECH TILE GRID ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Tech Tile Grid</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Solution Portfolio</h1>
+                </div>
+                <h2>3-column grid — layer label, product name, and short description</h2>
+                <div class="tech-grid">
+                    <div class="tech-tile">
+                        <div class="tech-layer">Automation</div>
+                        <div class="tech-name">Ansible Automation Platform</div>
+                        <div class="tech-detail">Enterprise automation across IT operations, network, cloud, and security.</div>
+                    </div>
+                    <div class="tech-tile">
+                        <div class="tech-layer">AI-Assisted</div>
+                        <div class="tech-name">Ansible Lightspeed</div>
+                        <div class="tech-detail">AI-powered playbook generation using IBM watsonx Codestral models.</div>
+                    </div>
+                    <div class="tech-tile">
+                        <div class="tech-layer">Operating System</div>
+                        <div class="tech-name">Red Hat Enterprise Linux</div>
+                        <div class="tech-detail">Stable, secure, and supported Linux for enterprise workloads.</div>
+                    </div>
+                    <div class="tech-tile">
+                        <div class="tech-layer">Container Platform</div>
+                        <div class="tech-name">OpenShift</div>
+                        <div class="tech-detail">Kubernetes platform for building, deploying, and scaling containerised apps.</div>
+                    </div>
+                    <div class="tech-tile">
+                        <div class="tech-layer">Insights</div>
+                        <div class="tech-name">Red Hat Insights</div>
+                        <div class="tech-detail">Predictive analytics and proactive remediation for RHEL environments.</div>
+                    </div>
+                    <div class="tech-tile">
+                        <div class="tech-layer">Services</div>
+                        <div class="tech-name">Labs Residency</div>
+                        <div class="tech-detail">Embedded engineers co-building production automation with customer teams.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 10 — DATA TABLE ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Data Table</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Priority Accounts</h1>
+                </div>
+                <h2>Striped table — use <code>.leads-table</code> with <code>table-layout: fixed</code> and explicit column widths</h2>
+                <div class="table-container">
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th style="width:22%">Account</th>
+                                <th style="width:15%">Players</th>
+                                <th style="width:30%">Top Use Cases</th>
+                                <th style="width:33%">Recommended Next Step</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Bharti Airtel</strong></td>
+                                <td>10+</td>
+                                <td>Patching, day-2 ops, migration</td>
+                                <td>Labs Residency &rarr; AAP subscription + patch PoC</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NIC / MeitY</strong></td>
+                                <td>15+</td>
+                                <td>Patching, provisioning, DR</td>
+                                <td>Labs open practice transformation + DO374 cohort</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Genpact</strong></td>
+                                <td>7</td>
+                                <td>Patching, vulnerability remediation</td>
+                                <td>Labs Automation CoE + Lightspeed demo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ericsson</strong></td>
+                                <td>3</td>
+                                <td>Full-stack automation, cloud migration</td>
+                                <td>Labs + Consulting bundle — network automation PoC</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Powergrid / PGCIL</strong></td>
+                                <td>3</td>
+                                <td>Patching, VM provisioning</td>
+                                <td>Labs + Consulting — infra modernisation blueprint</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 11 — TWO-COLUMN LAYOUT ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Two-Column Layout</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Before &amp; After</h1>
+                </div>
+                <h2>Two equal columns — use <code>.two-col</code> &rarr; <code>.col</code> for any side-by-side content</h2>
+                <div class="two-col" style="margin-top: 16px;">
+                    <div class="col">
+                        <h3 style="color: var(--rh-gray-dark); border-bottom: 2px solid #ddd; padding-bottom: 6px;">Before: Manual Operations</h3>
+                        <ul class="challenge-list">
+                            <li>Patching takes 3 days per environment — fully manual.</li>
+                            <li>Deployments require 5-person war room with rollback scripts.</li>
+                            <li>Compliance reports generated manually each quarter.</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h3 style="color: var(--rh-red); border-bottom: 2px solid var(--rh-red); padding-bottom: 6px;">After: Automated with AAP</h3>
+                        <ul class="challenge-list" style="border-left-color: #3B6D11;">
+                            <li>Patching completes in 2 hours — zero-touch across 500 hosts.</li>
+                            <li>Deployments run via CI/CD — average 8 minutes end-to-end.</li>
+                            <li>Compliance dashboard updates continuously via Insights.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 12 — DARK CONTRAST PANEL ═══ -->
+            <div class="slide">
+                <div class="component-label">Component: Dark Contrast Panel</div>
+                <div class="slide-header">
+                    <svg class="rh-logo" viewBox="0 0 613 145" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#e00" d="M127.47,83.49c12.51,0,30.61-2.58,30.61-17.46a14,14,0,0,0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89,8.69,103.76.5,97.51.5,91.69.5,90,8,83.06,8c-6.68,0-11.64-5.6-17.89-5.6-6,0-9.91,4.09-12.93,12.5,0,0-8.41,23.72-9.49,27.16A6.43,6.43,0,0,0,42.53,44c0,9.22,36.3,39.45,84.94,39.45M160,72.07c1.73,8.19,1.73,9.05,1.73,10.13,0,14-15.74,21.77-36.43,21.77C78.54,104,37.58,76.6,37.58,58.49a18.45,18.45,0,0,1,1.51-7.33C22.27,52,.5,55,.5,74.22c0,31.48,74.59,70.28,133.65,70.28,45.28,0,56.7-20.48,56.7-36.65,0-12.72-11-27.16-30.83-35.78"/>
+                        <path d="M579.74,92.8c0,11.89,7.15,17.67,20.19,17.67a52.11,52.11,0,0,0,11.89-1.68V95a24.84,24.84,0,0,1-7.68,1.16c-5.37,0-7.36-1.68-7.36-6.73V68.3h15.56V54.1H596.78v-18l-17,3.68V54.1H568.49V68.3h11.25Zm-53,.32c0-3.68,3.69-5.47,9.26-5.47a43.12,43.12,0,0,1,10.1,1.26v7.15a21.51,21.51,0,0,1-10.63,2.63c-5.46,0-8.73-2.1-8.73-5.57m5.2,17.56c6,0,10.84-1.26,15.36-4.31v3.37h16.82V74.08c0-13.56-9.14-21-24.39-21-8.52,0-16.94,2-26,6.1l6.1,12.52c6.52-2.74,12-4.42,16.83-4.42,7,0,10.62,2.73,10.62,8.31v2.73a49.53,49.53,0,0,0-12.62-1.58c-14.31,0-22.93,6-22.93,16.73,0,9.78,7.78,17.24,20.19,17.24m-92.44-.94h18.09V80.92h30.29v28.82H506V36.12H487.93V64.41H457.64V36.12H439.55ZM370.62,81.87c0-8,6.31-14.1,14.62-14.1A17.22,17.22,0,0,1,397,72.09V91.54A16.36,16.36,0,0,1,385.24,96c-8.2,0-14.62-6.1-14.62-14.09m26.61,27.87h16.83V32.44l-17,3.68V57.05a28.3,28.3,0,0,0-14.2-3.68c-16.19,0-28.92,12.51-28.92,28.5a28.25,28.25,0,0,0,28.4,28.6,25.12,25.12,0,0,0,14.93-4.83ZM320,67c5.36,0,9.88,3.47,11.67,8.83H308.47C310.15,70.3,314.36,67,320,67M291.33,82c0,16.2,13.25,28.82,30.28,28.82,9.36,0,16.2-2.53,23.25-8.42l-11.26-10c-2.63,2.74-6.52,4.21-11.14,4.21a14.39,14.39,0,0,1-13.68-8.83h39.65V83.55c0-17.67-11.88-30.39-28.08-30.39a28.57,28.57,0,0,0-29,28.81M262,51.58c6,0,9.36,3.78,9.36,8.31S268,68.2,262,68.2H244.11V51.58Zm-36,58.16h18.09V82.92h13.77l13.89,26.82H292l-16.2-29.45a22.27,22.27,0,0,0,13.88-20.72c0-13.25-10.41-23.45-26-23.45H226Z"/>
+                    </svg>
+                    <h1>Labs Residency Opportunities</h1>
+                </div>
+                <h2>Problem &rarr; Solution pairing — dark cards in a 2&times;2 grid using inline styles</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
+                    <div class="dark-panel" style="padding: 14px 16px;">
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.55); line-height: 1.3; margin-bottom: 6px;"><strong style="color: rgba(255,255,255,0.7);">Problem:</strong> Skills gap is the #1 blocker &mdash; classroom training alone isn&rsquo;t closing it.</div>
+                        <div style="font-size: 0.92em; font-weight: 700; color: var(--rh-red); margin-bottom: 3px;">Adoption Residency</div>
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.75); line-height: 1.35;">Embed engineers for 4&ndash;8 weeks to co-build production playbooks. Teams ship real automation while they learn.</div>
+                        <div style="font-size: 0.72em; color: rgba(255,255,255,0.4); margin-top: 6px;"><strong>Accounts:</strong> NIC/MeitY, Airtel, Genpact</div>
+                    </div>
+                    <div class="dark-panel" style="padding: 14px 16px;">
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.55); line-height: 1.3; margin-bottom: 6px;"><strong style="color: rgba(255,255,255,0.7);">Problem:</strong> Siloed teams and approval-heavy processes block adoption even when leadership is aligned.</div>
+                        <div style="font-size: 0.92em; font-weight: 700; color: var(--rh-red); margin-bottom: 3px;">Open Practice Transformation</div>
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.75); line-height: 1.35;">Shift how teams work before building automation. Social contracts and retrospectives to break silos.</div>
+                        <div style="font-size: 0.72em; color: rgba(255,255,255,0.4); margin-top: 6px;"><strong>Accounts:</strong> NIC/MeitY, PGCIL, AmEx</div>
+                    </div>
+                    <div class="dark-panel" style="padding: 14px 16px;">
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.55); line-height: 1.3; margin-bottom: 6px;"><strong style="color: rgba(255,255,255,0.7);">Problem:</strong> IT services firms need automation capability fast but can&rsquo;t pause client delivery.</div>
+                        <div style="font-size: 0.92em; font-weight: 700; color: var(--rh-red); margin-bottom: 3px;">Automation Centre of Excellence</div>
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.75); line-height: 1.35;">Stand up governance, standards, and reusable content. Labs builds the foundation; the customer scales it.</div>
+                        <div style="font-size: 0.72em; color: rgba(255,255,255,0.4); margin-top: 6px;"><strong>Accounts:</strong> Genpact, NIC/MeitY</div>
+                    </div>
+                    <div class="dark-panel" style="padding: 14px 16px;">
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.55); line-height: 1.3; margin-bottom: 6px;"><strong style="color: rgba(255,255,255,0.7);">Problem:</strong> Subscriptions purchased but stuck between pilot and production &mdash; no roadmap to scale.</div>
+                        <div style="font-size: 0.92em; font-weight: 700; color: var(--rh-red); margin-bottom: 3px;">Labs &rarr; Consulting Pipeline</div>
+                        <div style="font-size: 0.78em; color: rgba(255,255,255,0.75); line-height: 1.35;">Labs validates strategy in weeks; Consulting delivers at scale. One-time deal becomes subscription annuity.</div>
+                        <div style="font-size: 0.72em; color: rgba(255,255,255,0.4); margin-top: 6px;"><strong>Accounts:</strong> Ericsson, PGCIL, Airtel</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 13 — CLOSING / THANK YOU ═══ -->
+            <div class="slide title-slide">
+                <div class="title-content">
+                    <h1 class="main-title" style="font-size: 5em;">Thank You</h1>
+                    <p class="subtitle">Red Hat Open Innovation Labs</p>
+                    <p class="event-info">Component Library &bull; HTML Presentation Template &bull; 2026</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">&lsaquo;</button>
+        <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides"></span></span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">&rsaquo;</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n > totalSlides) currentSlide = totalSlides;
+            else if (n < 1) currentSlide = 1;
+            else currentSlide = n;
+            slides.forEach(s => s.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(n) { showSlide(currentSlide + n); }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')    changeSlide(-1);
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+        });
+
+        showSlide(1);
+    </script>
+</body>
+</html>

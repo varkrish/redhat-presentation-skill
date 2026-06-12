@@ -1,0 +1,32 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-image-content
+template_id: red-hat-standard
+type: element
+name: Image + Content
+description: Split slide with a full-height photo or illustration on one side and text content on the other.
+section: Overview, agenda, content, and quotes
+when_to_use:
+- Story-driven slides where a visual reinforces the narrative.
+- People-centric slides (customer story, team intro).
+- Technology showcase with product screenshot + description.
+constraints:
+- 'Image zone: right 40–50% of slide, full height, no margin inside zone.'
+- Delete the shaded background placeholder before inserting the real image.
+- Keep left and right slide margins clear (≥ 5% each side).
+- 'Content zone: left 50–60%, standard text hierarchy.'
+- If no subheading is needed, delete the placeholder and let content extend into the shaded area.
+visual:
+  image_zone: right 40–50%, full height, bleed to edge
+  content_zone: left 50–60%, standard padding
+  title_font: Red Hat Display, 22–28pt
+  body_font: Red Hat Text, 13–14pt
+  background: white left panel
+rh_examples:
+- layout: CUSTOM_1_1_1_1_1_1_1_1_1
+  slide_hint: Title + subhead + body left, photo right
+- layout: CUSTOM_1_1_1_1_1_1_1_1_1_1_1_1_1
+  slide_hint: Full-bleed photo right, minimal left text

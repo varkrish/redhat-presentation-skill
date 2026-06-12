@@ -1,0 +1,32 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- narrative_pattern
+- constraints
+skill_id: red-hat-standard-title-closing
+template_id: red-hat-standard
+type: section
+name: Title and Closing Slides
+description: Opens and closes every deck. Required in all presentations.
+position: first and last
+purpose: Establishes deck identity (title, presenter, audience context) and closes with Red Hat boilerplate and a call to
+  action.
+deck_types:
+- sales-pitch
+- exec-briefing
+- technical-deep-dive
+- field-event-summary
+- post-event-report
+required_elements:
+- title-block
+optional_elements:
+- image-content
+constraints:
+- Title slide must be slide 1 — no exceptions.
+- Closing 'Thank you' slide is the last slide.
+- Presentation title must not exceed two lines.
+- Delete product logo placeholder if not a product-focused deck.
+- Presenter name and title required on the title slide.
+- Webinar title variant (TITLE_1_2_2_1_1_1) only for webinars viewed at small size.
+narrative_pattern: 'Open with a title that frames the conversation (''Digital Sovereignty: Enabling Trusted Infrastructure'').
+  Close with ''Thank you'', Red Hat boilerplate, and a specific next step or CTA. The title slide sets tone — use a photo
+  for external audience, plain for internal.'

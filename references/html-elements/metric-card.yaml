@@ -1,0 +1,47 @@
+skill_id: rh-html-metric-card
+type: html-element
+name: Metric Card
+css_class: metric-grid > metric-card
+description: >-
+  KPI highlight card with a large bold number/stat and a short label beneath it.
+  Cards are arranged in a horizontal flex row (.metric-grid).
+
+when_to_use:
+  - Executive summary or highlights slides with 2–4 key numbers.
+  - Event stats (attendance, completions, satisfaction scores).
+  - ROI figures, market data, progress metrics.
+  - Maximum 4 cards per slide — use 2 or 3 for maximum visual impact.
+
+constraints:
+  - Value text: 2.2em, font-weight 700, color var(--rh-red).
+  - Label text: 0.75em, font-weight 700, below value.
+  - Each card has a red 5px left border.
+  - Cards must all be the same height — use align-items:stretch on .metric-grid.
+  - Never use more than 4 cards in a single .metric-grid row.
+  - Source citation required below the slide if stats are externally sourced.
+
+html_pattern: |
+  <div class="metric-grid" style="margin-top: 24px; align-items: stretch;">
+    <div class="metric-card">
+      <div class="value">125</div>
+      <div class="label">Total Participants</div>
+    </div>
+    <div class="metric-card">
+      <div class="value">92%</div>
+      <div class="label">Completion Rate</div>
+    </div>
+    <div class="metric-card">
+      <div class="value">4.7</div>
+      <div class="label">Avg Satisfaction (out of 5)</div>
+    </div>
+  </div>
+
+extended_variant: |
+  <!-- Metric card with additional paragraph content -->
+  <div class="metric-card">
+    <div class="label">Status</div>
+    <div class="value" style="font-size: 1.6em;">Delivered</div>
+    <p style="margin-top: 12px; margin-bottom: 0; font-size: 0.95em;">
+      Short description of this metric or achievement.
+    </p>
+  </div>

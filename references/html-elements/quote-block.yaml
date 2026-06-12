@@ -1,0 +1,33 @@
+skill_id: rh-html-quote-block
+type: html-element
+name: Quote Grid
+css_class: quote-grid > quote
+description: >-
+  2-column masonry-style grid of verbatim quotes. Each .quote card has a red
+  left border, italic text, and light grey background. Used for participant
+  feedback, customer voice, or analyst quotes.
+
+when_to_use:
+  - Survey or event feedback slides — verbatim participant responses.
+  - Customer voice or testimonials.
+  - "What they said" pattern in event reports.
+  - Use 4–8 quotes per slide — fewer than 4 looks sparse, more than 8 becomes unreadable.
+
+constraints:
+  - Quotes must be verbatim or clearly paraphrased — do not fabricate.
+  - Text is italic, font-size 0.95em.
+  - Red left border: 3px solid var(--rh-red).
+  - break-inside: avoid-column prevents quotes splitting across CSS columns.
+  - Do not include speaker attribution in the .quote div unless explicitly required
+    (for internal event feedback, attribution is usually omitted for anonymity).
+  - Use curly quotes: &ldquo; and &rdquo; — not straight quotes.
+
+html_pattern: |
+  <div class="quote-grid" style="margin-top: 12px;">
+    <div class="quote">&ldquo;Quote text here. Keep under 40 words for best visual balance.&rdquo;</div>
+    <div class="quote">&ldquo;Another participant quote demonstrating a specific challenge or insight.&rdquo;</div>
+    <div class="quote">&ldquo;A third quote that reinforces the theme of the slide.&rdquo;</div>
+    <div class="quote">&ldquo;A fourth quote. Use an even number for balanced column layout.&rdquo;</div>
+    <div class="quote">&ldquo;Fifth quote.&rdquo;</div>
+    <div class="quote">&ldquo;Sixth quote.&rdquo;</div>
+  </div>

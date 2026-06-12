@@ -1,0 +1,30 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-tech-tile
+template_id: red-hat-standard
+type: element
+name: Technology / Product Tile
+description: Grid of product or technology names with icons and one-line descriptions.
+section: Overview, agenda, content, and quotes
+when_to_use:
+- Portfolio overview showing multiple Red Hat products in one slide.
+- Solution architecture layers (platform → middleware → app).
+- Partner ecosystem maps.
+constraints:
+- 2×2, 3×2, or 3×3 grid — do not mix tile sizes.
+- 'Each tile: product logo or icon, product name (bold), one-line descriptor.'
+- Consistent tile size and padding across the grid.
+- Use official Red Hat product logos — not hand-drawn icons.
+- Max 9 tiles per slide; if more, split across two slides.
+visual:
+  tile_background: White with 1pt light grey border, or flat light grey
+  logo_zone: top-centre of tile, 32–48px
+  name_font: Red Hat Display, 14–16pt, bold
+  desc_font: Red Hat Text, 12pt, grey
+  grid_gap: 12–16px consistent gap
+rh_examples:
+- slide_hint: 2×2 RHEL / OpenShift / Ansible / Satellite tiles
+- slide_hint: 3×2 solution layer tiles with coloured headers

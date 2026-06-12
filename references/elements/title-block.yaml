@@ -1,0 +1,36 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-title-block
+template_id: red-hat-standard
+type: element
+name: Title Block
+description: Opening or closing slide with presentation title, optional subheading, and presenter name.
+section: Title and closing slides
+when_to_use:
+- First slide of every deck — never skip.
+- Use a photo-variant when the presentation is for an external audience.
+- Use the plain (no-photo) variant for internal-only decks.
+- Closing 'Thank you' slide reuses the same layout with boilerplate company copy.
+constraints:
+- Presentation title MUST NOT exceed two lines.
+- Subheading is optional — delete the placeholder if unused; do not leave it blank.
+- Presenter name and title appear in the lower-left zone.
+- Product logo may replace the Red Hat hat logo ONLY on product-focused decks.
+- Do not add extra shapes or text outside the defined placeholder zones.
+visual:
+  background: Dark Red Hat red (#EE0000) or full-bleed photo
+  title_font: Red Hat Display, 36–44pt, white
+  subheading_font: Red Hat Text, 20–24pt, white
+  presenter_font: Red Hat Text, 14pt, white
+  logo_position: top-right, ~2% margin
+  photo_zone: right 40% of slide, full height
+rh_examples:
+- layout: TITLE_1
+  slide_hint: Light theme, no photo
+- layout: TITLE_1_2_2_1
+  slide_hint: Light theme, portrait photo right
+- layout: TITLE_1_2_2_1_1_1
+  slide_hint: Webinar title — smaller text, two presenter columns

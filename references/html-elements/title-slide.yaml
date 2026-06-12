@@ -1,0 +1,53 @@
+skill_id: rh-html-title-slide
+type: html-element
+name: Title Slide
+css_class: slide title-slide
+description: >-
+  Full-bleed red gradient opening or closing slide. Used for the first slide
+  (with presenter names) and the last slide (Thank You / closing summary).
+
+when_to_use:
+  - Always the first slide of every deck.
+  - Always the last slide of every deck ("Thank You" or summary).
+  - Never use for content — only for opening, section dividers, and closing.
+
+constraints:
+  - Background must be the red gradient (linear-gradient(135deg, #EE0000 0%, #CC0000 100%)).
+  - All text is white or rgba(255,255,255,0.9).
+  - No slide-header logo on title slides — omit the .slide-header entirely.
+  - Footer OIL logo hidden via CSS (::after is set to display:none on .title-slide).
+  - Main title font-size 3.5em or larger (font-weight 300 for elegance).
+  - Subtitle font-size 1.8em (font-weight 300).
+  - Presenter names at the bottom left / right in a .presenters flex row.
+  - Confidential designator: absolute-positioned, top-right, 0.7em, rgba white.
+  - The first .slide in the deck gets class="slide active title-slide".
+
+html_pattern: |
+  <div class="slide active title-slide">
+    <!-- Optional: remove if not confidential -->
+    <div class="confidential">CONFIDENTIAL — Red Hat associates only</div>
+
+    <div class="title-content">
+      <h1 class="main-title">Presentation Title</h1>
+      <p class="subtitle">Subtitle or Event Name</p>
+      <!-- Optional: event details line -->
+      <p class="event-info">Stat one &bull; Stat two &bull; Date</p>
+    </div>
+
+    <!-- Optional: omit .presenters on closing slides -->
+    <div class="presenters">
+      <div class="presenter">
+        <div class="presenter-name">Presenter Name</div>
+        <div class="presenter-title">Job Title</div>
+      </div>
+    </div>
+  </div>
+
+closing_variant: |
+  <!-- Closing / Thank You — no presenters, larger title -->
+  <div class="slide title-slide">
+    <div class="title-content">
+      <h1 class="main-title" style="font-size: 5em;">Thank You</h1>
+      <p class="subtitle">Questions &amp; Discussion</p>
+    </div>
+  </div>

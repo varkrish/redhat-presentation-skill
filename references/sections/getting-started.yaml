@@ -1,0 +1,21 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- narrative_pattern
+- constraints
+skill_id: red-hat-standard-getting-started
+template_id: red-hat-standard
+type: section
+name: Getting Started
+description: Template guidance slides — delete ALL of these before sharing the deck.
+position: pre-deck (delete before use)
+purpose: Provides template instructions, confidentiality guidance, and theme selection help. Never included in a delivered
+  presentation.
+deck_types:
+- any
+required_elements: []
+optional_elements: []
+constraints:
+- Remove all 'Template slide' slides before sharing externally.
+- Set the confidential designator in Slide > Edit Theme before distributing.
+- Choose Standard Light, Standard Dark, or Expressive sub-template on slide 5.
+narrative_pattern: ''

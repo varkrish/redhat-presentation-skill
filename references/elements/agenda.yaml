@@ -1,0 +1,31 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-agenda
+template_id: red-hat-standard
+type: element
+name: Agenda / Overview
+description: Lists 3–6 topics the deck will cover, with optional brief descriptions per topic.
+section: Overview, agenda, content, and quotes
+when_to_use:
+- Second or third slide in decks longer than 8 slides.
+- As a 'What we'll discuss today' preview.
+- As a section recap when returning to agenda mid-deck.
+constraints:
+- Maximum 6 agenda items; use two columns for 5–6 items.
+- 'Each item: topic name (bold) + one-line description (regular weight).'
+- Do not use bullet points — use numbered rows or icon rows instead.
+- Keep consistent left margin; align all topic labels.
+visual:
+  background: White or light grey (#F5F5F5)
+  topic_font: Red Hat Display, 16–18pt, black
+  detail_font: Red Hat Text, 13–14pt, dark grey
+  accent_line: 2pt Red Hat red (#EE0000) left border per row
+  layout: single or double column, equal row heights
+rh_examples:
+- layout: CUSTOM_1_1_1_1
+  slide_hint: 3-item single column with detail
+- layout: CUSTOM_1_1_1_1_1_1
+  slide_hint: 6-item two-column grid

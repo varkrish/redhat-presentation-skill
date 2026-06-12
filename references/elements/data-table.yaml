@@ -1,0 +1,31 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-data-table
+template_id: red-hat-standard
+type: element
+name: Data Table
+description: Structured rows and columns for comparing specifications, features, or datasets.
+section: Data, tables, and timelines
+when_to_use:
+- Feature comparison matrix (product vs. product).
+- Pricing or SKU tables.
+- Benchmark or test result tables.
+constraints:
+- 'Column header: Red Hat Display, 13pt, bold; maximum two lines.'
+- 'Cell text: Red Hat Text, 12pt.'
+- 'Alternate row shading using #F5F5F5 and white.'
+- 'Header row: Red Hat red background (#EE0000), white text.'
+- Maximum 6 columns; if more, split table or use landscape layout.
+- Source citation required below the table.
+visual:
+  header_fill: '#EE0000'
+  header_font: Red Hat Display, 13pt, white, bold
+  row_alt_fill: '#F5F5F5'
+  cell_font: 'Red Hat Text, 12pt, #111111'
+  border: '1pt #DDDDDD'
+rh_examples:
+- slide_hint: 6-column comparison table, red header, alt-row shading
+- slide_hint: 3-column pricing table with tick/cross cells

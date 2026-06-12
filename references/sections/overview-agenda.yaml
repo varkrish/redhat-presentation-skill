@@ -1,0 +1,37 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- narrative_pattern
+- constraints
+skill_id: red-hat-standard-overview-agenda
+template_id: red-hat-standard
+type: section
+name: Overview, Agenda, Content, and Quotes
+description: The main body of every deck — agenda, market data, customer challenges, solutions, evidence, and quotes.
+position: middle (slides 3 through second-to-last)
+purpose: 'Delivers the core narrative: establish context → articulate problem → present solution → prove value → recommend
+  action.'
+deck_types:
+- sales-pitch
+- exec-briefing
+- technical-deep-dive
+- field-event-summary
+- post-event-report
+required_elements:
+- agenda
+optional_elements:
+- metric-card
+- challenge-list
+- quote-block
+- tech-tile
+- recommendation-card
+- image-content
+constraints:
+- Agenda slide appears as slide 2 or 3.
+- Source citations required on all data slides.
+- No more than one quote-block slide per section.
+- Metric cards and charts should not appear on the same slide.
+- Keep consistent section marker text visible in the top-left corner of each content slide.
+narrative_pattern: 'Lead with an agenda slide (2–3 topics for exec briefings; up to 6 for technical deep-dives). Follow the
+  SPIN structure: Situation (market context + metrics) → Problem (challenge list) → Implication (business impact quote or
+  data) → Need-payoff (solution tiles + recommendation cards). Quote blocks perform best after metrics — they humanise the
+  data.'

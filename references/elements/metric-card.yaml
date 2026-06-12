@@ -1,0 +1,31 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-metric-card
+template_id: red-hat-standard
+type: element
+name: Metric Card
+description: Emphasises a single KPI or statistic with a large number and a short label.
+section: Overview, agenda, content, and quotes
+when_to_use:
+- Executive summary or opportunity slides with 2–4 key numbers.
+- Market size, growth rate, adoption figures, or ROI data.
+- Never use more than 4 cards per slide — use 2 or 3 for maximum impact.
+constraints:
+- 'Value text: 40–60pt, Red Hat Display, bold.'
+- 'Label text: 13–16pt, Red Hat Text, below or beside value.'
+- 'Each card must have an accent element: red border, red fill strip, or red icon.'
+- Source citation required below the slide if the stat is externally sourced.
+- Cards must align on a consistent horizontal baseline.
+visual:
+  card_background: White with 3pt Red Hat red (#EE0000) left border
+  value_font: 'Red Hat Display, 48pt, #000000 or #EE0000'
+  label_font: 'Red Hat Text, 14pt, #333333'
+  accent: Red Hat red left border or top fill strip
+  card_size_hint: ~25% slide width × ~30% slide height each
+  max_per_slide: 4
+rh_examples:
+- slide_hint: '3 cards: market size, growth %, customer count'
+- slide_hint: '2 cards: before/after ROI comparison'

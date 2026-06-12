@@ -1,0 +1,31 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-timeline
+template_id: red-hat-standard
+type: element
+name: Timeline
+description: Horizontal or vertical sequence of dated milestones or phases.
+section: Data, tables, and timelines
+when_to_use:
+- Project roadmap or programme phasing.
+- Product release history.
+- Customer journey milestones.
+constraints:
+- 'Horizontal timelines: left = past/current, right = future.'
+- Maximum 6 milestones per slide; group phases if more.
+- 'Milestone dot: Red Hat red circle; connecting line: light grey.'
+- Date label above line; milestone title below line.
+- Do not mix timeline with other chart types on the same slide.
+- 'Year labels: Red Hat Display, 14pt bold; milestone labels: Red Hat Text, 12pt.'
+visual:
+  connector_line: '2pt #DDDDDD horizontal'
+  milestone_dot: '12px circle, #EE0000 fill'
+  date_font: 'Red Hat Display, 14pt, bold, #EE0000'
+  label_font: 'Red Hat Text, 12pt, #333333'
+  phase_fill: Light red (#FDECEA) or grey (#F5F5F5) zone backgrounds
+rh_examples:
+- slide_hint: 5-milestone horizontal timeline, red dots, year markers
+- slide_hint: 3-phase Gantt-style bar timeline

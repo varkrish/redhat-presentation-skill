@@ -1,0 +1,64 @@
+skill_id: rh-html-nav-boilerplate
+type: html-element
+name: Navigation Bar + Progress Bar
+css_class: navigation, nav-btn, slide-counter, progress-bar
+description: >-
+  The fixed navigation bar and top progress bar that appear on every HTML
+  presentation. Includes previous/next buttons, a slide counter, keyboard arrow
+  key support, and a red progress indicator at the top of the viewport.
+
+when_to_use:
+  - Include in every HTML presentation — always at the bottom of <body>.
+  - The progress bar div goes immediately after <body> opens.
+  - Never modify the JS logic — only update the HTML labels if needed.
+
+constraints:
+  - Navigation bar is position:fixed, bottom:30px, centred horizontally.
+  - Progress bar is position:fixed, top:0, left:0, height:4px, red.
+  - The JS auto-calculates totalSlides from document.querySelectorAll('.slide').length
+    — do NOT hardcode a number in the HTML span.
+  - Keyboard support: ArrowLeft / ArrowUp = previous; ArrowRight / ArrowDown = next.
+  - Buttons use onclick="changeSlide(-1)" and onclick="changeSlide(1)".
+  - Disabled state on prev/next buttons is handled automatically by showSlide().
+
+html_pattern: |
+  <!-- Place immediately after <body> opens -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Place just before </body> -->
+  <div class="navigation">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">&lsaquo;</button>
+    <span class="slide-counter">
+      <span id="currentSlide">1</span> / <span id="totalSlides"></span>
+    </span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">&rsaquo;</button>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = document.querySelectorAll('.slide').length;
+    document.getElementById('totalSlides').textContent = totalSlides;
+
+    function showSlide(n) {
+      const slides = document.querySelectorAll('.slide');
+      if (n > totalSlides) currentSlide = totalSlides;
+      else if (n < 1) currentSlide = 1;
+      else currentSlide = n;
+      slides.forEach(s => s.classList.remove('active'));
+      slides[currentSlide - 1].classList.add('active');
+      document.getElementById('currentSlide').textContent = currentSlide;
+      const progress = (currentSlide / totalSlides) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+      document.getElementById('prevBtn').disabled = currentSlide === 1;
+      document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+    }
+
+    function changeSlide(n) { showSlide(currentSlide + n); }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   changeSlide(-1);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  changeSlide(1);
+    });
+
+    showSlide(1);
+  </script>

@@ -1,0 +1,30 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-quote-block
+template_id: red-hat-standard
+type: element
+name: Quote Block
+description: Full-slide or half-slide customer or analyst quote with attribution.
+section: Overview, agenda, content, and quotes
+when_to_use:
+- Customer voice or analyst validation after a challenge/solution slide.
+- Social proof in sales decks — place after ROI metrics.
+- Executive summary as a 'proof point' before the detailed agenda.
+constraints:
+- 'Quote text: 20–28pt, Red Hat Display, italic, left-aligned.'
+- Attribution line (name + title + company) immediately below the quote.
+- Optional headshot photo in right 35% of slide — must be right-click replaceable.
+- Do not use quotation marks AND decorative quote glyphs — pick one.
+- Maximum 50 words for the quote body.
+visual:
+  quote_font: 'Red Hat Display italic, 22–26pt, #000000'
+  attribution_font: 'Red Hat Text Medium, 13pt, #EE0000'
+  accent: Large opening quote glyph in Red Hat red or 4pt red left rule
+  photo_zone: right 30–35%, vertically centred, circular crop optional
+  background: White or very light grey
+rh_examples:
+- slide_hint: Full-width quote, no photo, red quote glyph
+- slide_hint: Quote left + headshot photo right

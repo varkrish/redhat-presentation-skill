@@ -1,0 +1,52 @@
+skill_id: rh-html-bar-chart
+type: html-element
+name: Horizontal Bar Chart
+css_class: bar-chart > bar-item > bar-label + bar-wrapper > bar
+description: >-
+  CSS-only horizontal bar chart. Each bar item has a text label (left) and a
+  filled div whose width% equals the data value. No JavaScript required.
+
+when_to_use:
+  - Category comparison with percentage values (survey responses, rankings).
+  - Up to 8–10 bars per slide — more than 10 becomes illegible.
+  - Use colour modifiers to group or distinguish categories.
+
+constraints:
+  - .bar width is set as inline style: style="width:72%"
+  - .bar-label is right-aligned at 30% width.
+  - .bar-wrapper is 70% width with a grey (#e0e0e0) background.
+  - Bar height is 30px; line-height 30px to vertically centre the text label inside.
+  - Default bar colour: var(--rh-red) — use for primary / top category.
+  - .secondary: var(--rh-gray-dark) #595959 — use for secondary group.
+  - .tertiary: #8a8a8a — use for third group or low-priority items.
+  - .green: #3B6D11 — use to indicate positive / success metrics.
+  - Never use colour alone — the % label inside the bar provides a text equivalent.
+  - Always display the percentage value as text inside the .bar div.
+
+html_pattern: |
+  <ul class="bar-chart" style="margin-top: 14px;">
+    <li class="bar-item">
+      <span class="bar-label">Category A</span>
+      <div class="bar-wrapper">
+        <div class="bar" style="width:72%">72%</div>
+      </div>
+    </li>
+    <li class="bar-item">
+      <span class="bar-label">Category B</span>
+      <div class="bar-wrapper">
+        <div class="bar" style="width:58%">58%</div>
+      </div>
+    </li>
+    <li class="bar-item">
+      <span class="bar-label">Category C</span>
+      <div class="bar-wrapper">
+        <div class="bar secondary" style="width:41%">41%</div>
+      </div>
+    </li>
+    <li class="bar-item">
+      <span class="bar-label">Category D</span>
+      <div class="bar-wrapper">
+        <div class="bar tertiary" style="width:15%">15%</div>
+      </div>
+    </li>
+  </ul>

@@ -1,0 +1,35 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-bar-chart
+template_id: red-hat-standard
+type: element
+name: Bar / Column Chart
+description: Vertical or horizontal bar chart for comparing categories or showing trends.
+section: Data, tables, and timelines
+when_to_use:
+- Market share comparison across competitors.
+- Year-over-year growth data (3–5 years).
+- Survey results or benchmark data.
+- Never use for continuous time-series — use a line chart instead.
+constraints:
+- 'Primary series colour: Red Hat red (#EE0000). Secondary: dark grey (#333333).'
+- Do NOT use red to represent negative or bad data — use grey or amber.
+- Do not use colour alone to distinguish series — add labels or patterns.
+- Maximum 8 bars per chart for readability.
+- Source citation required below the chart.
+- 'Axis labels: Red Hat Text, 11pt; Chart title: Red Hat Display, 14pt bold.'
+- 'To edit: click chart → dropdown → ''Open source'' to update data.'
+visual:
+  primary_fill: '#EE0000'
+  secondary_fill: '#333333'
+  axis_font: 'Red Hat Text, 11pt, #555555'
+  title_font: Red Hat Display, 14pt, bold
+  grid_lines: light grey horizontal only
+  legend: below chart, horizontal
+  background: white chart area, slide background transparent
+rh_examples:
+- slide_hint: Vertical bar chart, 5 categories, red primary series
+- slide_hint: Grouped horizontal bars, 3 series, red + grey + light grey

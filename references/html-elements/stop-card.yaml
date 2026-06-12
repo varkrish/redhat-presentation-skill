@@ -1,0 +1,53 @@
+skill_id: rh-html-stop-card
+type: html-element
+name: Stop / Step Cards
+css_class: stops-grid > stop-card
+description: >-
+  A 4-column grid of numbered step or journey stop cards. Each card has a large
+  red number, a bold title, and a descriptive paragraph. Used for journey maps,
+  phased processes, lab stops, and 4-step frameworks.
+
+when_to_use:
+  - Journey stage or lab stop overview slides.
+  - 4-phase delivery or adoption frameworks.
+  - Process steps where order and equal weight matter.
+  - Exactly 4 items is ideal (fills a 4-column grid). Use 2 or 3 columns for fewer items.
+
+constraints:
+  - .stop-number: 1.8em, bold, var(--rh-red).
+  - .stop-title: 0.85em, bold, black.
+  - .stop-desc: 0.75em, var(--rh-gray-dark), line-height 1.3.
+  - Red 4px top border (not left border — distinguishes from challenge-list / rec-card).
+  - Default grid is 4-column (repeat(4, 1fr)). Adjust to repeat(2, 1fr) for 2–3 items.
+  - Numbers are typically zero-padded strings ("01", "02") for visual consistency.
+  - Keep .stop-desc under 30 words — this is a summary, not a paragraph.
+
+html_pattern: |
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-number">01</div>
+      <div class="stop-title">Step One Title</div>
+      <div class="stop-desc">Brief description of what happens at this stage — keep under 30 words.</div>
+    </div>
+    <div class="stop-card">
+      <div class="stop-number">02</div>
+      <div class="stop-title">Step Two Title</div>
+      <div class="stop-desc">Brief description.</div>
+    </div>
+    <div class="stop-card">
+      <div class="stop-number">03</div>
+      <div class="stop-title">Step Three Title</div>
+      <div class="stop-desc">Brief description.</div>
+    </div>
+    <div class="stop-card">
+      <div class="stop-number">04</div>
+      <div class="stop-title">Step Four Title</div>
+      <div class="stop-desc">Brief description.</div>
+    </div>
+  </div>
+
+two_column_variant: |
+  <!-- For 2 or 3 steps, override the grid -->
+  <div class="stops-grid" style="grid-template-columns: repeat(2, 1fr);">
+    ...
+  </div>

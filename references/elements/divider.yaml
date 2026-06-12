@@ -1,0 +1,32 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- when_to_use
+- constraints
+- rh_examples
+skill_id: red-hat-standard-divider
+template_id: red-hat-standard
+type: element
+name: Section Divider
+description: Full-bleed coloured slide that signals a new section. No charts or body copy.
+section: Dividers
+when_to_use:
+- Between every major section of a deck (every 4–8 content slides).
+- As an agenda preview — list upcoming topics as the divider headline.
+- Never use as a content slide; remove all body copy.
+constraints:
+- Headline limited to three lines maximum.
+- Optional section marker text (e.g. 'Part 1') appears in small caps above the headline.
+- Optional supporting copy of ≤ 30 words below headline — use sparingly.
+- No data, charts, or images other than the background.
+- Background is full Red Hat red or a branded gradient.
+visual:
+  background: '#EE0000 solid or branded gradient'
+  headline_font: Red Hat Display, 32–40pt, white
+  section_marker_font: Red Hat Text Medium, 12pt, white, ALL CAPS
+  supporting_copy_font: Red Hat Text, 16pt, white
+  layout_zone: left 60% text, right 40% empty or subtle graphic
+rh_examples:
+- layout: CUSTOM
+  slide_hint: Red background, large left-aligned headline
+- layout: CUSTOM_1_1_1_1_1
+  slide_hint: With optional subhead

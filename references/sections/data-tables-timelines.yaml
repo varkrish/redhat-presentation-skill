@@ -1,0 +1,31 @@
+_generated: 2026-05-21 (deterministic from template)
+_manual_fields:
+- narrative_pattern
+- constraints
+skill_id: red-hat-standard-data-tables-timelines
+template_id: red-hat-standard
+type: section
+name: Data, Tables, and Timelines
+description: Quantitative evidence slides — charts, comparison tables, and roadmaps.
+position: middle to late
+purpose: Provides data-backed proof points that validate the narrative established in the overview section.
+deck_types:
+- sales-pitch
+- exec-briefing
+- technical-deep-dive
+- post-event-report
+required_elements: []
+optional_elements:
+- bar-chart
+- data-table
+- timeline
+constraints:
+- Do not use red to represent negative data — use dark grey (#333333) or amber.
+- All charts must have source citations.
+- 'For all charts: remember to not use colour alone to visualise and distinguish data — utilise text sizing, spacing, contrast.'
+- 'Column headers in tables: maximum two lines.'
+- 'To edit a chart: select it → dropdown arrow top-right → ''Open source''.'
+- 'Accessibility: follow Visual Accessibility at Red Hat guidelines.'
+narrative_pattern: 'Place data slides after the challenge section and before recommendations. Use charts to establish market
+  scale, tables to compare options, and timelines to show phased delivery. Always pair a data slide with a ''So what?'' takeaway
+  in the slide title. Remember: colour alone must not be the only differentiator in charts — add labels.'

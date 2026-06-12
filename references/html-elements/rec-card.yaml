@@ -1,0 +1,50 @@
+skill_id: rh-html-rec-card
+type: html-element
+name: Recommendation Card
+css_class: rec-grid > rec-card
+description: >-
+  A 2-column grid of recommendation cards. Each card has a red title, grey detail
+  text, and a bold black action line. Used for next steps, recommendations, and
+  proposals.
+
+when_to_use:
+  - "Recommendations & Next Steps" slides.
+  - Post-event follow-up actions.
+  - Proposed engagement or service offerings.
+  - Best with 4–6 cards (2 rows of 2 or 3 rows of 2).
+    For more than 6, use a challenge-list instead.
+
+constraints:
+  - .rec-title: bold, 0.95em, var(--rh-red).
+  - .rec-detail: 0.85em, #4d4d4d, line-height 1.4.
+  - .rec-action: 0.8em, bold, var(--rh-black), margin-top 6px.
+  - Red 5px left border, 0 6px 6px 0 border-radius.
+  - Grid is 2-column (repeat(2, 1fr)). Do not use more than 2 columns.
+  - .rec-action line must start with "Action:" to clearly flag accountability.
+
+html_pattern: |
+  <div class="rec-grid">
+    <div class="rec-card">
+      <div class="rec-title">Recommendation Title</div>
+      <div class="rec-detail">
+        Description of the recommendation — what to do, why it matters,
+        and which accounts or teams it applies to.
+      </div>
+      <div class="rec-action">Action: Owner to complete by [date]</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-title">Second Recommendation</div>
+      <div class="rec-detail">Description text here.</div>
+      <div class="rec-action">Action: Owner to complete by [date]</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-title">Third Recommendation</div>
+      <div class="rec-detail">Description text here.</div>
+      <div class="rec-action">Action: Owner to complete by [date]</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-title">Fourth Recommendation</div>
+      <div class="rec-detail">Description text here.</div>
+      <div class="rec-action">Action: Owner to complete by [date]</div>
+    </div>
+  </div>

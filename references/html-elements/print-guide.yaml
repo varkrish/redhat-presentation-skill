@@ -1,0 +1,124 @@
+skill_id: rh-html-print-guide
+type: html-element
+name: Print / PDF Export Guide
+css_class: "@media print block"
+description: >-
+  Complete reference for printing or exporting a Red Hat HTML presentation to PDF.
+  Covers the @media print CSS block, browser requirements, dark panel handling,
+  and per-component colour overrides.
+
+---
+
+how_to_print:
+  steps:
+    - Open the .html file in Chrome or Edge. Do NOT use Safari — it strips background colours.
+    - Press Cmd+P (macOS) or Ctrl+P (Windows).
+    - Set Destination to "Save as PDF".
+    - Under More settings — set Layout = Landscape, Margins = None.
+    - Enable "Background graphics" checkbox.
+    - Click Save. Each slide prints as one A4 landscape page.
+  note: >-
+    Chrome renders print-color-adjust: exact correctly.
+    Safari ignores it for background-color and background-image,
+    producing white boxes where red/grey cards should appear.
+
+what_the_print_block_does:
+  - "@page { margin: 0; size: A4 landscape } — removes browser chrome, forces A4 landscape."
+  - "All .slide divs become display:flex !important — overrides the interactive show/hide."
+  - "break-after: page on each .slide — one page per slide."
+  - ".navigation and .progress-bar are hidden."
+  - "print-color-adjust: exact on every coloured element — prevents browsers stripping backgrounds."
+  - "Colour values hardcoded as hex (not var(--rh-red)) in !important overrides for maximum compatibility."
+
+dark_panel_print_behaviour:
+  problem: >-
+    Dark contrast panels use background:#1a1a1a with inline styles. Inline styles
+    override @media print class rules unless !important is used. Without a named
+    class, they cannot be targeted for print overrides.
+  solution: >-
+    Always add class="dark-panel" to every dark contrast panel div. The @media print
+    block overrides .dark-panel to a light card (background:#f5f5f5, red left border)
+    that prints cleanly without wasting ink.
+  css_override: |
+    @media print {
+      .dark-panel {
+        background: #f5f5f5 !important;
+        color: #333333 !important;
+        border-top: none !important;
+        border-left: 4px solid #EE0000 !important;
+        border-radius: 0 6px 6px 0 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .dark-panel * { color: #333333 !important; }
+    }
+
+complete_print_block: |
+  /* Include this block verbatim in every generated deck. */
+  @media print {
+      @page { margin: 0; size: A4 landscape; }
+      body { margin: 0; padding: 0; background: white; overflow: visible !important; }
+      .navigation, .progress-bar { display: none !important; }
+      .slide {
+          display: flex !important;
+          page-break-after: always;
+          break-after: page;
+          width: 100vw; height: 100vh;
+          max-width: 100vw; max-height: 100vh;
+          margin: 0; padding: 40px 60px !important;
+          box-shadow: none; background: white;
+      }
+      .slide:last-child { page-break-after: avoid; break-after: avoid; }
+      .title-slide {
+          background: #EE0000 !important;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: space-between !important;
+          padding: 60px !important;
+      }
+      .title-slide .presenter { color: white !important; }
+      .metric-card { border-left: 5px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .metric-card .value { color: #EE0000 !important; }
+      .bar-chart .bar { background-color: #EE0000 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; color: white !important; }
+      .bar-chart .bar.secondary { background-color: #595959 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .bar-chart .bar.tertiary  { background-color: #8a8a8a !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .bar-chart .bar-wrapper { background-color: #e0e0e0 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .quote { border-left: 3px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .stop-card { border-top: 4px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .challenge-list li { border-left: 4px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .rec-card { border-left: 5px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .rec-card .rec-title { color: #EE0000 !important; }
+      .tech-tile { border-top: 4px solid #EE0000 !important; background-color: #f5f5f5 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .tech-tile .tech-name { color: #EE0000 !important; }
+      /* Grid layouts — lock to intended column counts */
+      .stops-grid { grid-template-columns: repeat(4, 1fr) !important; }
+      .metric-grid { flex-direction: row !important; flex-wrap: wrap !important; }
+      .rec-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      /* Footer OIL logo — ensure positioned correctly */
+      .slide:not(.title-slide)::after {
+          bottom: 16px; right: 20px;
+          width: 260px; height: 50px;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+      }
+      /* Dark contrast panels → light card */
+      .dark-panel {
+          background: #f5f5f5 !important;
+          color: #333333 !important;
+          border-top: none !important;
+          border-left: 4px solid #EE0000 !important;
+          border-radius: 0 6px 6px 0 !important;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+      }
+      .dark-panel * { color: #333333 !important; }
+  }
+
+agent_checklist:
+  - Always include the complete_print_block above — never abbreviate it.
+  - Every dark panel div must have class="dark-panel".
+  - Use Chrome or Edge when testing print output — not Safari.
+  - The title-slide red background requires print-color-adjust:exact AND the hex fallback.
+  - Bar chart .bar background-color must be hardcoded hex (#EE0000) in the print override, not var().
