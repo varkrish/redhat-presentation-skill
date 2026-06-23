@@ -145,7 +145,7 @@ cp -r . ~/.gemini/config/skills/varkrish/rh-presentation-html
 Real presentations built with this template:
 
 - **1-to-1 Meeting decks** — weekly manager check-ins with agenda, metrics, and key topics
-- **Ansible Quest India Post-Event Report** — 11-slide event report with survey data, bar charts, quotes, recommendation cards, and dark contrast panels
+- **Ansible Quest Post-Event Report** — 11-slide event report with survey data, bar charts, quotes, recommendation cards, and dark contrast panels
 - **Field Enablement Decks** — customer-facing presentations with tech tile grids and challenge lists
 
 ---
