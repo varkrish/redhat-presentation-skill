@@ -8,11 +8,15 @@ Built from real presentations created at Red Hat Open Innovation Labs (APAC).
 
 ## What this is
 
-A **skill** (read by AI agents) + a **template library** (copy-paste HTML) for anyone who needs to create Red Hat-branded presentations. Covers everything from brand tokens to per-component markup patterns to print/PDF export.
+A **branding rule** + **skill** (read by AI agents) + a **template library** (copy-paste HTML) for anyone who needs to create Red Hat-branded presentations.
+
+- **`.cursor/rules/branding.mdc`** — owns brand values (colours, fonts, accessibility, print)
+- **`SKILL.md`** — owns the presentation workflow (layout, slide types, checklist)
+- **`template/`** — canonical HTML/CSS starting point
 
 Works with:
+- [Cursor](https://cursor.sh) (rule + skill)
 - [Claude](https://claude.ai) (via `~/.claude/skills/`)
-- [Cursor](https://cursor.sh) (via `~/.cursor/skills-cursor/`)
 - [Antigravity](https://antigravity.dev) / Google IDE (via `~/.gemini/config/skills/`)
 
 ---
@@ -20,7 +24,7 @@ Works with:
 ## Quick start
 
 ### For AI agents
-Point your agent at `SKILL.md`. It contains the full specification — brand constants, file structure, slide types, component CSS classes, logo rules, and print instructions.
+Point your agent at `SKILL.md`. It defers to `.cursor/rules/branding.mdc` for all brand values and contains the full presentation specification — file structure, slide types, component CSS classes, logo rules, and print instructions.
 
 ### For humans
 1. Copy `template/base-presentation.html` to your project folder.
@@ -33,6 +37,8 @@ Point your agent at `SKILL.md`. It contains the full specification — brand con
 
 ```
 redhat-presentation-skill/
+├── .cursor/rules/
+│   └── branding.mdc                  # Brand values and constraints
 ├── SKILL.md                          # Agent instruction file — read this first
 ├── assets/
 │   └── logos/
@@ -63,14 +69,17 @@ redhat-presentation-skill/
 
 ## Brand constants
 
+Brand values are defined in `.cursor/rules/branding.mdc`. Key tokens for presentations:
+
 | Token | Value |
 |-------|-------|
-| Primary red | `#EE0000` |
-| Dark red | `#CC0000` |
-| Black | `#000000` |
+| Red Hat Red | `#EE0000` |
+| Dark Red | `#CC0000` |
+| UX Black | `#151515` |
 | Light grey | `#f5f5f5` |
 | Dark grey | `#595959` |
-| Font | `'Red Hat Display'` (Google Fonts) |
+| Headings | `'Red Hat Display'` |
+| Body | `'Red Hat Text'` |
 | Slide size | 1400 × 900 px (16:9) |
 
 ---
@@ -116,24 +125,34 @@ The `@media print` block handles:
 - `print-color-adjust: exact` on all coloured elements to preserve brand colours
 - Dark contrast panels (`.dark-panel`) converted to light cards for ink efficiency
 
-See `references/html-elements/print-guide.yaml` for the complete print CSS block.
+See `references/html-elements/print-guide.yaml` for the complete print CSS block. General print rules are in `.cursor/rules/branding.mdc` Section 8.
 
 ---
 
 ## Installing as an agent skill
 
+### Cursor (recommended — install both rule and skill)
+
+```bash
+# Branding rule (always-on brand values)
+mkdir -p ~/.cursor/rules
+cp .cursor/rules/branding.mdc ~/.cursor/rules/
+
+# Presentation skill (workflow + templates)
+mkdir -p ~/.cursor/skills/red-hat-html-presentation
+cp -r . ~/.cursor/skills/red-hat-html-presentation/
+```
+
 ### Claude
+
 ```bash
 cp -r . ~/.claude/skills/rh-presentation-skills
 ```
 
-### Cursor
-```bash
-mkdir -p ~/.cursor/skills-cursor/rh-presentation-html
-cp SKILL.md ~/.cursor/skills-cursor/rh-presentation-html/
-```
+Claude does not load Cursor rules automatically — agents should read `.cursor/rules/branding.mdc` from the skill directory for brand values.
 
 ### Antigravity (Google IDE)
+
 ```bash
 cp -r . ~/.gemini/config/skills/varkrish/rh-presentation-html
 ```

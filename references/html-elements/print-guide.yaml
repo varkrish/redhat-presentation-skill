@@ -6,6 +6,8 @@ description: >-
   Complete reference for printing or exporting a Red Hat HTML presentation to PDF.
   Covers the @media print CSS block, browser requirements, dark panel handling,
   and per-component colour overrides.
+  General print rules (print-color-adjust, @page, hiding nav) are in
+  .cursor/rules/branding.mdc Section 8.
 
 ---
 

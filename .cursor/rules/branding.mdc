@@ -1,0 +1,63 @@
+---
+description: Enforce Red Hat brand standards for UI, CSS, and copy.
+globs: ["**/*.{css,scss,tsx,jsx,html,md}"]
+alwaysApply: true
+---
+
+# Red Hat Brand Standards
+
+When generating UI, CSS, or documentation, adhere strictly to these Red Hat guidelines.
+
+## 1. Color Palette (Core)
+- **Red Hat Red:** `#ee0000` (Brand identity only — never for errors or danger states).
+- **Dark Red:** `#cc0000` (Gradients and hover states paired with Red Hat Red).
+- **UX Black:** `#151515`.
+- **White:** `#ffffff`.
+
+## 2. Extended Neutrals
+- **Light Grey:** `#f5f5f5` (Backgrounds, cards, alternating rows).
+- **Dark Grey:** `#595959` (Secondary text, captions).
+
+## 3. Contextual Colors
+- **Success:** `#3d7317` (success-green-60).
+- **Error/Danger:** `#f0561d` (danger-orange-50).
+- **Warning:** `#f8ce1c` (yellow-30).
+- **Info/Links:** `#0066cc` (interaction-blue-50).
+
+## 4. Typography
+- **Headings:** Use 'Red Hat Display'.
+- **Body:** Use 'Red Hat Text'.
+- **Code:** Use 'Red Hat Mono'.
+- **Alignment:** Always flush left. Avoid justified text.
+- **Casing:** Use sentence case for headlines and buttons (e.g., "Get started" not "Get Started").
+- **Google Fonts loading:**
+  ```html
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700&family=Red+Hat+Text:wght@400;700&family=Red+Hat+Mono:wght@400;700&display=swap" rel="stylesheet">
+  ```
+
+## 5. Icons
+- **UI Icons:** Use for navigation/utility. Stroke weight 2px on a 32px grid.
+- **Tech Icons:**
+  - Products: Black rounded rectangle background.
+  - Components: White rounded rectangle background.
+
+## 6. Accessibility
+- Minimum body text: 12px (0.75rem at 16px base).
+- Never use colour alone to convey meaning — add labels, patterns, or icons.
+- Dark-on-light contrast must meet WCAG AA (4.5:1 for text, 3:1 for large text/UI).
+
+## 7. Dark Backgrounds
+- On dark panels (`#151515` or `#1a1a1a`), use white (`#ffffff`) text and `#ee0000` for accent borders/highlights.
+- For print, provide a light-mode fallback (white card with red left border) so dark panels remain readable.
+
+## 8. Print / PDF
+- Always include `print-color-adjust: exact; -webkit-print-color-adjust: exact;` on coloured backgrounds, borders, and text in `@media print` blocks.
+- Use `@page { margin: 0; size: A4 landscape; }` for slide-based exports.
+- Hide navigation and progress UI in print.
+
+## 9. Documentation Sources
+- Brand Standards: https://www.redhat.com/en/about/brand/standards
+- UI Icons: https://www.redhat.com/en/about/brand/standards/icons/ui-icons
+- Tech Icons: https://www.redhat.com/en/about/brand/standards/icons/technology-icons

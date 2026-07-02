@@ -20,7 +20,7 @@ constraints:
 - Do not use quotation marks AND decorative quote glyphs — pick one.
 - Maximum 50 words for the quote body.
 visual:
-  quote_font: 'Red Hat Display italic, 22–26pt, #000000'
+  quote_font: 'Red Hat Display italic, 22–26pt, #151515'
   attribution_font: 'Red Hat Text Medium, 13pt, #EE0000'
   accent: Large opening quote glyph in Red Hat red or 4pt red left rule
   photo_zone: right 30–35%, vertically centred, circular crop optional

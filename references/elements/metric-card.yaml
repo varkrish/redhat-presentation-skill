@@ -21,7 +21,7 @@ constraints:
 - Cards must align on a consistent horizontal baseline.
 visual:
   card_background: White with 3pt Red Hat red (#EE0000) left border
-  value_font: 'Red Hat Display, 48pt, #000000 or #EE0000'
+  value_font: 'Red Hat Display, 48pt, #151515 or #EE0000'
   label_font: 'Red Hat Text, 14pt, #333333'
   accent: Red Hat red left border or top fill strip
   card_size_hint: ~25% slide width × ~30% slide height each
